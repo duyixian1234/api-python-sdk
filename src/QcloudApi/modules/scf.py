@@ -4,21 +4,22 @@
 from base import Base
 
 
-class Bill(Base):
-    requestHost = 'bill.api.qcloud.com'
+class Scf(Base):
+    requestHost = 'scf.api.qcloud.com'
 
 
 def main():
-    action = 'DescribeBills'
+    action = 'InvokeFunction'
     config = {
         'Region': 'sh',
         'secretId': 'AKIDPglgT5ZwBF7nHZLZJrDONAW2QcdSGZql',
         'secretKey': '000',
         'method': 'get'
     }
-    params = {}
-    service = Bill(config)
-    print(service.call(action, params))
+    params = {'functionName': 'add', 'param': '{"a":1,"b":2}'}
+    params1 = {'functionName':'date'}
+    service = Scf(config)
+    print(service.call(action, params1))
 
 
 if (__name__ == '__main__'):

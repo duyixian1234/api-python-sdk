@@ -1,22 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import urllib
+import urllib.parse
 import requests
-from sign import Sign
+from .sign import Sign
+
 
 class Request:
     timeout = 10
     version = 'SDK_PYTHON_1.1'
+
     def __init__(self, secretId, secretKey):
         self.secretId = secretId
         self.secretKey = secretKey
 
-    def generateUrl(self, requestHost, requestUri, params, method = 'GET'):
+    def generateUrl(self, requestHost, requestUri, params, method='GET'):
         params['RequestClient'] = Request.version
         sign = Sign(self.secretId, self.secretKey)
-        params['Signature'] = sign.make(requestHost, requestUri, params, method)
-        params = urllib.urlencode(params)
+        params['Signature'] = sign.make(requestHost, requestUri, params,
+                                        method)
+        params = urllib.parse.urlencode(params)
 
         url = 'https://%s%s' % (requestHost, requestUri)
         if (method.upper() == 'GET'):
@@ -24,34 +27,49 @@ class Request:
 
         return url
 
-    def send(self, requestHost, requestUri, params, files = {}, method = 'GET', debug = 0):
+    def send(self,
+             requestHost,
+             requestUri,
+             params,
+             files={},
+             method='GET',
+             debug=0):
         params['RequestClient'] = Request.version
         sign = Sign(self.secretId, self.secretKey)
-        params['Signature'] = sign.make(requestHost, requestUri, params, method)
+        params['Signature'] = sign.make(requestHost, requestUri, params,
+                                        method)
 
         url = 'https://%s%s' % (requestHost, requestUri)
 
         if (method.upper() == 'GET'):
-            req = requests.get(url, params=params, timeout=Request.timeout, verify=False)
+            req = requests.get(
+                url, params=params, timeout=Request.timeout, verify=False)
             if (debug):
-                print 'url:', req.url, '\n'
+                print('url:', req.url, '\n')
         else:
-            req = requests.post(url, data=params, files=files, timeout=Request.timeout, verify=False)
+            req = requests.post(
+                url,
+                data=params,
+                files=files,
+                timeout=Request.timeout,
+                verify=False)
             if (debug):
-                print 'url:', req.url, '\n'
+                print('url:', req.url, '\n')
 
         if req.status_code != requests.codes.ok:
             req.raise_for_status()
 
         return req.text
 
+
 def main():
-    secretId = 123
-    secretKey = 'test'
+    secretId = 'AKIDPglgT5ZwBF7nHZLZJrDONAW2QcdSGZql'
+    secretKey = '000'
     params = {}
     request = Request(secretId, secretKey)
-    print request.generateUrl('cvm.api.qcloud.com', '/v2/index.php', params)
-    print request.send('cvm.api.qcloud.com', '/v2/index.php', params)
+    print (request.generateUrl('cvm.api.qcloud.com', '/v2/index.php', params))
+    print (request.send('cvm.api.qcloud.com', '/v2/index.php', params).encode().decode('utf-8'))
+
 
 if (__name__ == '__main__'):
     main()

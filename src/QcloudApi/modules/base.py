@@ -28,16 +28,16 @@ class Base:
         self._params = copy.deepcopy(params)
         self._params['Action'] = action[0].upper() + action[1:]
 
-        if (self._params.has_key('Region') != True):
+        if not 'Region' in self._params:
             self._params['Region'] = self.defaultRegion
 
-        if (self._params.has_key('SecretId') != True):
+        if not 'SecretId' in self._params:
             self._params['SecretId'] = self.secretId
 
-        if (self._params.has_key('Nonce') != True):
-            self._params['Nonce'] = random.randint(1, sys.maxint)
+        if not 'Nonce' in self._params:
+            self._params['Nonce'] = random.randint(1, 10000)
 
-        if (self._params.has_key('Timestamp') != True):
+        if not 'Timestamp' in self._params:
             self._params['Timestamp'] = int(time.time())
 
         return self._params
@@ -62,7 +62,7 @@ def main():
     }
     params = {}
     base = Base(config)
-    print base.call(action, params)
+    print(base.call(action, params))
 
 if (__name__ == '__main__'):
     main()

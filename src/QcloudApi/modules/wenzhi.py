@@ -10,15 +10,15 @@ def main():
     action = 'TextSentiment'
     config = {
         'Region': 'gz',
-        'secretId': '你的secretId',
-        'secretKey': '你的secretKey',
+        'secretId': 'AKIDPglgT5ZwBF7nHZLZJrDONAW2QcdSGZql',
+        'secretKey': '000',
         'method': 'get'
     }
     params = {
         "content" : "123",
     }
     service = Wenzhi(config)
-    print service.call(action, params)
+    print(service.call(action, params))
 
 if (__name__ == '__main__'):
     main()
