@@ -1,25 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from base import Base
+from .base import Base
 
 
-class Bill(Base):
-    requestHost = 'bill.api.qcloud.com'
+class Account(Base):
+    requestHost = 'account.api.qcloud.com'
 
 
 def main():
-    action = 'DescribeBills'
+    action = 'AddProject'
     config = {
         'Region': 'sh',
-        'secretId': 'AKIDPglgT5ZwBF7nHZLZJrDONAW2QcdSGZql',
+        'secretId': '123',
         'secretKey': '000',
         'method': 'get'
     }
     params = {}
-    service = Bill(config)
+    service = Account(config)
     print(service.call(action, params))
 
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     main()

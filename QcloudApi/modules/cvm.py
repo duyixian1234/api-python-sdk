@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from base import Base
+from .base import Base
 
 
 class Cvm(Base):
@@ -12,7 +12,7 @@ def main():
     action = 'DescribeInstances'
     config = {
         'Region': 'sh',
-        'secretId': 'AKIDPglgT5ZwBF7nHZLZJrDONAW2QcdSGZql',
+        'secretId': '123',
         'secretKey': '000',
         'method': 'get'
     }
@@ -21,5 +21,5 @@ def main():
     print(service.call(action, params))
 
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     main()

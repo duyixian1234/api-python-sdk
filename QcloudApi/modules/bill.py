@@ -4,22 +4,22 @@
 from base import Base
 
 
-class Account(Base):
-    requestHost = 'account.api.qcloud.com'
+class Bill(Base):
+    requestHost = 'bill.api.qcloud.com'
 
 
 def main():
-    action = 'AddProject'
+    action = 'DescribeBills'
     config = {
         'Region': 'sh',
-        'secretId': 'AKIDPglgT5ZwBF7nHZLZJrDONAW2QcdSGZql',
+        'secretId': '123',
         'secretKey': '000',
         'method': 'get'
     }
     params = {}
-    service = Account(config)
+    service = Bill(config)
     print(service.call(action, params))
 
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     main()

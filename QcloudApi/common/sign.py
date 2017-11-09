@@ -12,14 +12,14 @@ class Sign:
         self.secretKey = secretKey
 
     def make(self, requestHost, requestUri, params, method='GET'):
-        list = {}
+        paramsList = {}
         for param_key in params:
             if method == 'post' and str(params[param_key])[0:1] == "@":
                 continue
-            list[param_key] = params[param_key]
+            paramsList[param_key] = params[param_key]
         srcStr = method.upper() + requestHost + requestUri + '?' + "&".join(
-            k.replace("_", ".") + "=" + str(list[k])
-            for k in sorted(list.keys()))
+            k.replace("_", ".") + "=" + str(paramsList[k])
+            for k in sorted(paramsList.keys()))
         hashed = hmac.new(self.secretKey.encode(), srcStr.encode(), hashlib.sha1)
         return binascii.b2a_base64(hashed.digest())[:-1]
 
@@ -32,5 +32,5 @@ def main():
     print(sign.make('https://cvm.api.qcloud.com', '/v2/index.php', params))
 
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
     main()
