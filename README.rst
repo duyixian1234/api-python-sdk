@@ -4,7 +4,20 @@ qcloudapi3是为了让Python3开发者能够在自己的代码里更快捷方便
 
 Example
 =======
->>> from QcloudApi import QcloudApi
+>>> from qcloudapi3 import QcloudApi
+>>> _module = 'wenzhi'
+>>> action = 'TextSentiment'
+>>> config = {
+>>>     'Region': 'gz',
+>>>     'secretId': '123',
+>>>     'secretKey': '000',
+>>>     'method': 'post'
+>>> }
+>>> params = {
+>>>     "content": "所有人都很差劲。",
+>>> }
+>>> service = QcloudApi(_module, config)
+>>> print('URL:
 >>> _module = 'wenzhi'
 >>> action = 'TextSentiment'
 >>> config = {

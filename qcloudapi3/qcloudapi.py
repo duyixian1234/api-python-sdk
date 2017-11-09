@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-class QcloudApi:
+class Api:
     def __init__(self, _module, config):
         self.module = _module
         self.config = config
@@ -10,16 +10,16 @@ class QcloudApi:
     @staticmethod
     def _factory(_module, config):
         if _module == 'cvm':
-            from modules import cvm
+            from .modules import cvm
             service = cvm.Cvm(config)
         elif _module == 'scf':
-            from modules import scf
+            from .modules import scf
             service = scf.Scf(config)
         elif _module == 'wenzhi':
-            from modules import wenzhi
+            from .modules import wenzhi
             service = wenzhi.Wenzhi(config)
         elif _module == 'account':
-            from modules import account
+            from .modules import account
             service = account.Account(config)
         else:
             raise ValueError
@@ -58,14 +58,14 @@ def main():
     action = 'TextSentiment'
     config = {
         'Region': 'gz',
-        'secretId': 'AKIDPglgT5ZwBF7nHZLZJrDONAW2QcdSGZql',
-        'secretKey': '0teEwZ3PZX6WkpjRBmCPQI1Ys10uZAdu',
+        'secretId': '000',
+        'secretKey': '111',
         'method': 'post'
     }
     params = {
         "content": "所有人都很差劲。",
     }
-    service = QcloudApi(_module, config)
+    service = Api(_module, config)
     print('URL:\n' + service.generateUrl(action, params))
     print(service.call(action, params))
 

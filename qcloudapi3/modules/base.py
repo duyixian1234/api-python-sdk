@@ -8,7 +8,7 @@ import sys
 import time
 import warnings
 
-from common import Request
+from ..common import Request
 
 warnings.filterwarnings("ignore")
 
