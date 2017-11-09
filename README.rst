@@ -25,7 +25,6 @@ https://wenzhi.api.qcloud.com/v2/index.php
 
 Install
 =======
-code::shell
 pip install qcloudapi3
 
 Author
