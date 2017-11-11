@@ -18,6 +18,9 @@ class Api:
         elif _module == 'wenzhi':
             from .modules import wenzhi
             service = wenzhi.Wenzhi(config)
+        elif _module == 'tmt':
+            from .modules import tmt
+            service = tmt.Tmt(config)
         elif _module == 'account':
             from .modules import account
             service = account.Account(config)
