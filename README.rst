@@ -17,19 +17,6 @@ Example
 >>>     "content": "所有人都很差劲。",
 >>> }
 >>> service = QcloudApi(_module, config)
->>> print('URL:
->>> _module = 'wenzhi'
->>> action = 'TextSentiment'
->>> config = {
->>>     'Region': 'gz',
->>>     'secretId': '123',
->>>     'secretKey': '000',
->>>     'method': 'post'
->>> }
->>> params = {
->>>     "content": "所有人都很差劲。",
->>> }
->>> service = QcloudApi(_module, config)
 >>> print('URL:\n' + service.generateUrl(action, params))
 >>> print(service.call(action, params))
 URL:
