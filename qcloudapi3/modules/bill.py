@@ -3,20 +3,23 @@
 
 from base import Base
 
+
 class Bill(Base):
     requestHost = 'bill.api.qcloud.com'
+
 
 def main():
     action = 'DescribeBills'
     config = {
-        'Region': 'gz',
-        'secretId': '你的secretId',
-        'secretKey': '你的secretKey',
+        'Region': 'sh',
+        'secretId': '123',
+        'secretKey': '000',
         'method': 'get'
     }
     params = {}
     service = Bill(config)
-    print service.call(action, params)
+    print(service.call(action, params))
 
-if (__name__ == '__main__'):
+
+if __name__ == '__main__':
     main()
