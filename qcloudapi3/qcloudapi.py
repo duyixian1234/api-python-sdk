@@ -24,6 +24,9 @@ class Api:
         elif _module == 'account':
             from .modules import account
             service = account.Account(config)
+        elif _module == 'cmq':
+            from .modules import cmq
+            service = cmq.Cmq(config)
         else:
             raise ValueError
         return service
