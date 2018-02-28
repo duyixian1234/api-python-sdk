@@ -15,7 +15,7 @@ def main():
     params = {
         "content": "123",
     }
-    service = Tmt(config)
+    service = Cmq(config)
     print(service.call(action, params))
 
 
